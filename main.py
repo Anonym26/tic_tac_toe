@@ -25,6 +25,7 @@ def checking_values():
         if list_board[a] == list_board[b] == list_board[c] and list_board[a] != ' ':
             return list_board[a]
 
+
 # Логика BOTa
 def make_a_first_move_bot():
     """Отвечает за первый ход компьютера"""
@@ -33,6 +34,13 @@ def make_a_first_move_bot():
     else:
         list_board[4] = 'O'
 
+
+def make_a_second_move_bot():
+    """Отвечает за второй ход компьютера"""
+    if list_board[4] == 'X' and list_board[8] == 'X':
+        list_board[2] = 'O'
+    else:
+        make_a_next_move_bot()
 
 
 def checking_values_bot_O():
@@ -55,12 +63,13 @@ def checking_values_bot_X():
     return list_board.index(' ')
 
 
-def make_a_second_move_bot():
+def make_a_next_move_bot():
     """Отвечает за последующие ходы компьютера"""
     if checking_values_bot_O() == -1:
         list_board[checking_values_bot_X()] = 'O'
     else:
         list_board[checking_values_bot_O()] = 'O'
+
 
 # Игровой процесс
 def make_a_move():
@@ -82,8 +91,10 @@ def make_a_move():
         elif move == 'BOT':
             if count == 1:
                 make_a_first_move_bot()
-            else:
+            elif count == 2:
                 make_a_second_move_bot()
+            else:
+                make_a_next_move_bot()
             count += 1
             show_game()
             if checking_values():
