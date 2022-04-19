@@ -77,6 +77,7 @@ def make_a_move():
     count = 0
     show_game()
     while True:
+        print(count)
         move = keys.get((input('\nСделайте ход: ')), 'False_') if not count % 2 else 'BOT'
         if move != 'False_' and move != 'BOT' and list_board[int(move)] == ' ':
             list_board[int(move)] = 'X'
@@ -91,7 +92,7 @@ def make_a_move():
         elif move == 'BOT':
             if count == 1:
                 make_a_first_move_bot()
-            elif count == 2:
+            elif count == 3:
                 make_a_second_move_bot()
             else:
                 make_a_next_move_bot()
